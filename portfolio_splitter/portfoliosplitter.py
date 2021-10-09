@@ -1,5 +1,6 @@
 import yfinance as yf
 import json
+import click
 
 """
     Small program to calulate current portfolio split /
@@ -74,7 +75,7 @@ class PortfolioSplitter():
     def print_next_invest(self):
         for position in self.current_data:
             if position["percent"]/100 < position["quantifier"]:
-                print(f"Invest into {position['name']} next. Should be {position['quantifier']*100} %, is { position['percent']} %")
+                click.echo( f"Invest into {position['name']} next. Should be {position['quantifier']*100} %, is { position['percent']} %")
 
     def invest(self, symbol, amount):
         for entry in self.json_data["current_values"]:
@@ -89,4 +90,10 @@ class PortfolioSplitter():
 
     def print_symbol_names(self):
         for position in self.current_data:
-            print(f"Name: {position['name']} , Symbol: {position['symbol']}")
+            click.echo(f"Name: {position['name']} , Symbol: {position['symbol']}")
+
+    def get_current_values(self):
+        return self.current_data
+
+    def get_json_data(self):
+        return self.json_data
