@@ -49,7 +49,13 @@ def symbols(ctx):
 @click.pass_obj
 def current_values(ctx):
     """This command prints out all positions in portfolio"""
-    click.echo(ctx.get_current_values())
+    current = ctx.get_current_values()
+    for value in current:
+        symbol = value["symbol"] 
+        count = value["count"]
+        current_price = value["price"]
+        total = value["position_value"]
+        click.echo(f"Symbol: {symbol} || Count: {count} || Price: {current_price}€ || Total: {total}€" )
     
 if __name__ == "__main__":
     cli()
