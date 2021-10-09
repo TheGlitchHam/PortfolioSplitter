@@ -53,7 +53,8 @@ class PortfolioSplitter():
             ticker_price= ticker_info['regularMarketPrice']
             position_value = position["count"] * ticker_price
             quantifier = position["quantifier"]
-            all_positions.append({"symbol": symbol, "name": ticker_name, "price": ticker_price, "position_value": position_value,"percent":0, "quantifier": quantifier})
+            count = position["count"]
+            all_positions.append({"symbol": symbol, "name": ticker_name,"count": count, "price": ticker_price, "position_value": position_value,"percent":0, "quantifier": quantifier})
             total += position_value
 
         for position in all_positions:
